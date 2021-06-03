@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const App=() {
+export const App=() =>{
   return (
     <Div>
       hi
