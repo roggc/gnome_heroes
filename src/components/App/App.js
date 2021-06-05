@@ -5,8 +5,13 @@ import {Modal} from '../Modal'
 import {Filters} from '../Filters'
 
 const jsonUrl='https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json'
+
 export const PopulationContext=createContext()
 
+/**
+ * this renders the app
+ * @returns {JSX.Element}
+ */
 export const App=() =>{
 
   const [isFiltersShown,setIsFiltersShown]=useState(false)
@@ -31,12 +36,15 @@ export const App=() =>{
     fetchData()
   },[])
 
+  /**
+   * this switch between showing or not showing the modal with filtering capabilities
+   */
   const toggleFiltersModal=()=>{
     setIsFiltersShown(isFiltersShown=>!isFiltersShown)
   }
 
   /**
-   * this changes population on change of nameFilter
+   * this changes population on change of nameFilter and professions filter
    */
   useEffect(()=>{
     let filteredPopulation=populationWithoutFiltering

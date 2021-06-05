@@ -1,12 +1,25 @@
 import styled from 'styled-components'
 
+/**
+ * this renders a modal
+ * @param {*} props 
+ * @returns {JSX.Element} 
+ */
 export const Modal=({children,isShown,setIsShown})=>{
 
+    /**
+     * this closes the modal
+     * @param {*} e this is the event fired
+     */
     const closeModal=(e)=>{
         e.stopPropagation()
         setIsShown(false)
     }
 
+    /**
+     * this is to prevent from closing the modal when clicking in the content
+     * @param {*} e this is the event fired
+     */
     const doNothing=(e)=>{
         e.stopPropagation()
     }

@@ -2,7 +2,13 @@ import styled from 'styled-components'
 import {useContext,useLayoutEffect,useState} from 'react'
 import {PopulationContext} from '../App'
 
+/**
+ * this renders detailed information about a gnome
+ * @param {*} props 
+ * @returns {JSX.Element}
+ */
 export const Detail=({gnomeData,isDetailShown})=>{
+
     const {name,professions,thumbnail,age,friends}=gnomeData
     const [nameState,setNameState]=useState(name)
     const [professionsState,setProfessionsState]=useState(professions)
@@ -11,7 +17,12 @@ export const Detail=({gnomeData,isDetailShown})=>{
     const [friendsState,setFriendsState]=useState(friends)
     const population=useContext(PopulationContext)
 
-    const fetchFriend=friend=>(e)=>{
+    /**
+     * this gets information of friend and updates state with this information
+     * @param {string} friend 
+     * @returns 
+     */
+    const fetchFriend=friend=>()=>{
         const friendGnome=population.find(gnome=>gnome.name===friend)
         const {name,professions,thumbnail,age,friends}=friendGnome
         setNameState(name)

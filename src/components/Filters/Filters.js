@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 import {useState} from 'react'
 
+/**
+ * this renders the filters
+ * @param {*} props 
+ * @returns {JSX.Element}
+ */
 export const Filters=({setNameFilter,professions,setProfessions})=>{
 
     const [checked,setChecked]=useState(professions.map(profession=>false))
@@ -9,12 +14,20 @@ export const Filters=({setNameFilter,professions,setProfessions})=>{
         setNameFilter(e.target.value)
     }
 
+    /**
+     * this checks/unchecks the checkbox and selects/deselects the profession for the filtering
+     * @param {number} index 
+     * @param {string} name 
+     * @returns 
+     */
     const toggleCheckbox=(index,name)=>(e)=>{
         setChecked(checked=>{
             const newChecked=[...checked]
             newChecked[index]=!newChecked[index]
             return newChecked
         })
+        // I put this here and not in the callback because when using a callback in setProfessions it is called twice, I don't 
+        // know why
         const newProfessions=[...professions]
         newProfessions.some(profession=>{
             if(profession.name===name){

@@ -1,12 +1,17 @@
 import styled from 'styled-components'
-import {useMemo} from 'react'
+import {useMemo,useState} from 'react'
 import {Modal} from '../Modal'
-import {useState} from 'react'
 import {Detail} from '../Detail'
 
 const MAX_NUMBER_OF_CHARACTERS=21
 
+/**
+ * this renders a card with gnome information
+ * @param {*} props 
+ * @returns {JSX.Element}
+ */
 export const GnomeCard=({gnomeData})=>{
+
     const {thumbnail,name,professions}=gnomeData
     const [isDetailShown,setIsDetailShown]=useState(false)
 
@@ -21,7 +26,10 @@ export const GnomeCard=({gnomeData})=>{
         return tempTxt
     },[professions])
 
-    const showDetail=(e)=>{
+    /**
+     * this opens the modal with the details of the gnome
+     */
+    const showDetail=()=>{
         setIsDetailShown(true)
     }
 
