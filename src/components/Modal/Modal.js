@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const Modal=({children,isShown,setIsShown})=>{
 
-    const closeModal=()=>{
+    const closeModal=(e)=>{
+        e.stopPropagation()
         setIsShown(false)
     }
 
@@ -40,7 +41,8 @@ background-color: #fefefe;
 margin: 15% auto; /* 15% from the top and centered */
 padding: 20px;
 border: 1px solid #888;
-width: 80%; /* Could be more or less, depending on screen size */
+width: fit-content; 
+max-width:80%;
 border-radius:5px;
 border:2px solid black;
 cursor:initial;

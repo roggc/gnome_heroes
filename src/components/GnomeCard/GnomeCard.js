@@ -1,10 +1,14 @@
 import styled from 'styled-components'
 import {useMemo} from 'react'
+import {Modal} from '../Modal'
+import {useState} from 'react'
+import {Detail} from '../Detail'
 
 const MAX_NUMBER_OF_CHARACTERS=21
 
 export const GnomeCard=({gnomeData})=>{
     const {thumbnail,name,professions}=gnomeData
+    const [isDetailShown,setIsDetailShown]=useState(false)
 
     const professionsTxt=useMemo(()=>{
         let tempTxt=professions.join(', ')
@@ -17,21 +21,27 @@ export const GnomeCard=({gnomeData})=>{
         return tempTxt
     },[professions])
 
-    return <Div>
+    const showDetail=(e)=>{
+        setIsDetailShown(true)
+    }
+
+    return <Div onClick={showDetail}>
         <Img src={thumbnail} alt='gnome pic' />
         <P>{name}</P>
         <P>{professionsTxt}</P>
+        <Modal isShown={isDetailShown} setIsShown={setIsDetailShown}>
+            <Detail gnomeData={gnomeData} />
+        </Modal>
     </Div>
 }
 
 const Div=styled.div`
 border-radius:5px;
 float:left;
---max-width:200px;
 margin:5px;
 box-shadow:0 0 1px 1px;
 padding:3px;
-cursor:pointer;¡
+cursor:pointer;
 `
 
 const Img=styled.img`
