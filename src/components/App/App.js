@@ -1,10 +1,11 @@
 import styled from 'styled-components'
-import {useEffect,useState} from 'react'
+import {useEffect,useState,createContext} from 'react'
 import {GnomeCard} from '../GnomeCard'
 import {Modal} from '../Modal'
 import {Filters} from '../Filters'
 
 const jsonUrl='https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json'
+export const PopulationContext=createContext()
 
 export const App=() =>{
 
@@ -13,16 +14,19 @@ export const App=() =>{
   const [population,setPopulation]=useState([])
   const [nameFilter,setNameFilter]=useState('')
   const [professions,setProfessions]=useState([])
+  const [isFetching,setIsFetching]=useState(false)
 
   /**
    * we fetch data from json url
    */
   useEffect(()=>{
+    setIsFetching(true)
     const fetchData= async ()=>{
       const response= await fetch(jsonUrl)
       const data=await response.json()
       setPopulation(data.Brastlewark)
       setPopulationWithoutFiltering(data.Brastlewark)
+      setIsFetching(false)
     }
     fetchData()
   },[])
@@ -74,6 +78,7 @@ export const App=() =>{
   },[populationWithoutFiltering])
 
   return (
+    <PopulationContext.Provider value={populationWithoutFiltering}>
     <Div>
       <div>
         <Button onClick={toggleFiltersModal} />
@@ -81,10 +86,15 @@ export const App=() =>{
           <Filters setNameFilter={setNameFilter} professions={professions} setProfessions={setProfessions} />
         </Modal>
       </div>
+      {isFetching?<div>loading data...</div>:
+      population.length?
       <GnomePopulationContainer>
         {population.map(gnome=><GnomeCard gnomeData={gnome} key={gnome.name} />)}
       </GnomePopulationContainer>
+      :null
+      }
     </Div>
+    </PopulationContext.Provider>
   )
 }
 

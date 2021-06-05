@@ -30,7 +30,7 @@ export const GnomeCard=({gnomeData})=>{
         <P>{name}</P>
         <P>{professionsTxt}</P>
         <Modal isShown={isDetailShown} setIsShown={setIsDetailShown}>
-            <Detail gnomeData={gnomeData} />
+            <Detail gnomeData={gnomeData} isDetailShown={isDetailShown} />
         </Modal>
     </Div>
 }
