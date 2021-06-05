@@ -53,13 +53,6 @@ export const App=() =>{
         }
         return false
       })
-      // gnome.professions.some(profession=>{
-      //   if(!professions.find(profes=>profes.name===profession&&profes.selected)){
-      //     condition=false
-      //     return true
-      //   }
-      //   return false
-      // })
       return condition
     })
     setPopulation(filteredPopulation)
@@ -79,13 +72,6 @@ export const App=() =>{
     })
     setProfessions(_professions)
   },[populationWithoutFiltering])
-
-  // /**
-  //  * this changes population on change of profession filter
-  //  */
-  //  useEffect(()=>{
-
-  // },[professions])
 
   return (
     <Div>

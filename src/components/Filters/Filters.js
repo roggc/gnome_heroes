@@ -26,40 +26,33 @@ export const Filters=({setNameFilter,professions,setProfessions})=>{
         setProfessions(newProfessions)
     }
 
-    return <div>
-        <NameContainer>
+    return (
+        <Div>
             <div><strong>name</strong></div>
             <Input type='text' onChange={_setNameFilter} />
-        </NameContainer>
-        <ProfessionContainer>
             <div><strong>profession</strong></div>
-            {/* <select>
-                {professions.map(profession=><option key={profession} value={profession}>{profession}</option>)}
-            </select> */}
             <div>
                 {professions.map((profession,index)=>
                     <CheckboxContainer key={profession.name}>
-                        <input type='checkbox' value={profession.name} onChange={toggleCheckbox(index,profession.name)} checked={checked[index]} />
+                        <input type='checkbox' onChange={toggleCheckbox(index,profession.name)} checked={checked[index]??false} />
                         <label>{profession.name}</label>
                     </CheckboxContainer>
                 )}
             </div>
-        </ProfessionContainer>
-    </div>
+        </Div>
+    )
 }
 
-const NameContainer=styled.div`
-display:flex;
+const Div=styled.div`
+display:grid;
+grid-template-columns: auto auto;
+grid-row-gap:5px;
 `
 
 const Input=styled.input`
 border-radius:5px;
 border:1px solid black;
-height:20px;
-`
-
-const ProfessionContainer=styled.div`
-display:flex;
+height:30px;
 `
 
 const CheckboxContainer=styled.div`
